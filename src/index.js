@@ -8,18 +8,33 @@ const countryInfo = document.querySelector(`.country-info`);
 const countryList = document.querySelector(`.country-list`);
 let searchName = ``;
 //
-const renderCountry = data => {
-  data
-    .map(
-      country => `<li>
-  //         <svg class="/" width="10" height="16">
-  //           <use href="${country.flags.svg}"></use>
-  //         </svg>
-  //         <p>${country.name.officialme}</p>
-  //       </li>`
-    )
-    .join(``);
-};
+// const renderCountry = data => {
+//   data
+//     .map(
+//       country => `<li>
+//   //         <svg class="/" width="10" height="16">
+//   //           <use href="${country.flags.svg}"></use>
+//   //         </svg>
+//   //         <p>${country.name.officialme}</p>
+//   //       </li>`
+//     )
+//     .join(``);
+// };
+
+function renderCountry(countries) {
+  countryInfo.innerHTML = '';
+  countryList.innerHTML = '';
+  const readyList = countries
+    .map(({ name, flags }) => {
+      return `<li class="country-list--item">
+			  <img src="${flags.svg}" alt="Country flag" width="40", height="30">
+			  <span class="country-list--name">${name.official}</span>
+		 </li>`;
+    })
+    .join('');
+  return readyList;
+}
+
 //
 const searchCountry = evt => {
   searchName = input.value.trim();
